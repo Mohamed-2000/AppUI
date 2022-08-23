@@ -1,0 +1,58 @@
+<br>
+
+<div class="row row justify-content-center">
+
+<H1 class="col-md-6">Edit Category :</H1>
+</div>
+<br>
+<form id="contact-form"  #contactForm="ngForm"  (ngSubmit)="Update(contactForm)">
+  <div class="controls">
+    <div class="row row justify-content-center">
+      <div class="col-md-6">
+        <div class="form-group">
+          <label for="Name">Category Name *</label>
+          <input id="Name" name="Name"  #Name="ngModel" [(ngModel)]="category.name" class="form-control form-control-lg" ngModel required type="text"  >
+          <label style="color:red;" for="Name" *ngIf="!Name?.valid && (Name?.dirty || Name?.touched)">This Field is required</label>
+        </div>
+      </div>
+  </div>
+
+  <br>
+  <div class="row row justify-content-center">
+    <div class="col-md-6">
+        <div class="form-group">
+            <label for="Description">Category Description *</label>
+            <input #Description="ngModel" class="form-control form-control-lg"[(ngModel)]="category.description" id="Description" name="Description" type="text" required="" maxlength="100"  >
+          <label style="color:red;" for="Description" *ngIf="!Description?.valid && (Description?.dirty || Description?.touched)">This Field is required</label>
+
+          </div>
+          </div>
+
+        </div>
+        <br>
+
+        <div class="row row justify-content-center">
+          <div class="col-md-6">
+      <div class="form-group">
+        <label for="Parent">Parent Category Name</label>
+        <select class="form-control form-control-lg" ngModel  id="Parent" (change)="SelectedCategory($event)">
+          <option #t1 *ngFor="let I of categories; let i = index" [value]="i" >{{I.name}}</option>
+        </select>
+  </div>
+          </div>
+
+        </div>
+        <br>
+  </div>
+  <div class="row row justify-content-center">
+
+          <div class="col-md-6">
+
+              <button [disabled]="!contactForm.valid" type="submit" class="btn btn-success btn-lg  pt-2 btn-block"> Update Category</button>
+              <!-- [routerLink]="['/AllProposals/',prop.projectId]"
+              routerLink="/AllProposals" -->
+             </div>
+            </div>
+      <!-- </div> -->
+</form>
+<br>

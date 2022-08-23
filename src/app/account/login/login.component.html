@@ -1,0 +1,45 @@
+
+<section class="ftco-section">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-6 col-lg-4">
+                <div class="login-wrap py-5">
+                    <h2 class="text-center mb-0">Welcome</h2>
+                    <br>
+                    <form action="#" class="login-form">
+                        <div class="form-group">
+                            <div class="icon d-flex align-items-center justify-content-center"><span
+                                    class="fa fa-user"></span></div>
+                            <input type="text" class="form-control" placeholder="Email or Username" required
+                                [(ngModel)]="userName" [ngModelOptions]="{standalone: true}">
+                        </div>
+                        <div class="form-group">
+                            <div class="icon d-flex align-items-center justify-content-center"><span
+                                    class="fa fa-lock"></span></div>
+                            <input id="password-field" type="{{pass}}" class="form-control" placeholder="Password"
+                                required [(ngModel)]="password" [ngModelOptions]="{standalone: true}">
+                            <span toggle="#password-field" class="fa fa-fw {{fa}} field-icon toggle-password"
+                                (click)="pass = (pass=='password')?'text':'password';fa=(fa=='fa-eye')?'fa-eye-slash':'fa-eye'"></span>
+
+
+                        </div>
+                        <div *ngIf="message != ''"><span class="text-danger">{{message}}</span></div>
+                        <div class="form-group d-md-flex">
+                            <div class="w-100 text-md-right">
+                                <a href="#">Forgot Password?</a>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <button type="submit" class="btn form-control btn-primary rounded submit px-3"
+                                (click)="login()">Log In</button>
+                        </div>
+                    </form>
+                    <div class="w-100 text-center mt-4 text">
+                        <p class="mb-0">Don't have an account?</p>
+                        <a [routerLink]="'/register'">Sign Up</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

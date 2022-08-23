@@ -1,0 +1,39 @@
+<!-- <p>checkout works!</p> -->
+<form id="contact-form"  #contactForm="ngForm" (ngSubmit)="clicka()">
+  <div class="controls">
+<div *ngIf="!isConfirmed;else other_content">
+<div class="row">
+  <div class="col-md-6">
+      <div class="form-group">
+          <label for="Description">Shipping Address *</label>
+          <input #Description="ngModel" class="form-control form-control-lg" [(ngModel)]="newOrder.shipping_Address" id="Description" name="Description" type="text" required=""  >
+        <label style="color:red;" for="Description" *ngIf="!Description?.valid && (Description?.dirty || Description?.touched)">This Field is required</label>
+        </div>
+        </div>
+      </div>
+<div class="row">
+  <div class="col-md-6" >
+    <div class="form-group">
+      <label for="Parent">Payment Method *</label>
+      <select class="form-control form-control-lg"   id="Parent" (change)="SelectedMethod($event)">
+        <option #t1 *ngFor="let I of payment_Methods; let i = index" [value]="i" >{{I}}</option>
+      </select>
+</div>
+<!-- </div> -->
+</div>
+
+      </div>
+      <div class="col-md-12">
+        <button name="save" [disabled]="!contactForm.valid" id="save" type="submit"   class="btn btn-success  pt-2 btn-block">Submit</button>
+        <!-- <label style="color:red;" for="save" *ngIf="!contactForm.valid &&  Description?.touched">Please Fill The Required Fields..</label> -->
+        </div>
+</div>
+
+</div>
+</form>
+
+<ng-template #other_content>
+Checkout Details
+<button (click)="Confirm()">Confirm</button>
+
+</ng-template>

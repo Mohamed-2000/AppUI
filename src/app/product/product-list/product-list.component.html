@@ -1,0 +1,77 @@
+<br>
+
+<div style="margin-left: 5%;">  <a  routerLink="/Inventory/add" routerLinkActive="router-link-active"  class="btn btn-success btn-lg">Add New Product</a>
+
+</div>
+<br>
+<div class="row row justify-content-center">
+
+<table mat-table [dataSource]="datasource" matSort class="mat-elevation-z8 col-md-11 ">
+
+  <!--- Note that these columns can be defined in any order.
+        The actual rendered columns are set as a property on the row definition" -->
+
+        <ng-container matColumnDef="Count">
+          <th mat-header-cell class="bg-light" *matHeaderCellDef mat-sort-header>#</th>
+          <td mat-cell *matCellDef="let element; let i=index"> {{i+1}} </td>
+        </ng-container>
+  <ng-container matColumnDef="image">
+    <th mat-header-cell class="bg-light" *matHeaderCellDef mat-sort-header>Image</th>
+    <td mat-cell *matCellDef="let element; let i=index">   <div class="d-flex align-items-center">
+      <img
+      src="https://localhost:7216/api/Image?id={{element.id}}"
+      onerror=" this.src ='assets/img/Product.jpg'"
+          alt=""
+          style="width: 100px; height: 100px"
+          class="rounded-circle"
+          />
+      <div class="ms-3">
+        <!-- <p class="fw-bold mb-1">image</p> -->
+        <!-- <p class="fw-bold mb-1">{{item.image}}</p> -->
+        <!-- <p class="text-muted mb-0">john.doe@gmail.com</p> -->
+      </div>
+    </div> </td>
+  </ng-container>
+  <ng-container matColumnDef="en">
+    <th mat-header-cell class="bg-light" *matHeaderCellDef mat-sort-header>English Name</th>
+    <td mat-cell *matCellDef="let element"> {{element.en_Name}} </td>
+  </ng-container>
+  <ng-container matColumnDef="ar">
+    <th mat-header-cell class="bg-light" *matHeaderCellDef mat-sort-header>Arabic Name</th>
+    <td mat-cell *matCellDef="let element"> {{element.ar_Name}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="category">
+    <th mat-header-cell class="bg-light" *matHeaderCellDef mat-sort-header>Category</th>
+    <td mat-cell *matCellDef="let element;let i = index">{{element.CategoryName}} </td>
+  </ng-container>
+  <ng-container matColumnDef="vendor">
+    <th mat-header-cell class="bg-light" *matHeaderCellDef mat-sort-header>Vendor</th>
+    <td mat-cell *matCellDef="let element"> {{element.VendorName}} </td>
+  </ng-container>
+  <ng-container matColumnDef="quantity">
+    <th mat-header-cell class="bg-light" *matHeaderCellDef mat-sort-header>Quantity</th>
+    <td mat-cell *matCellDef="let element"> {{element.quantity}} </td>
+  </ng-container>
+  <ng-container matColumnDef="price">
+    <th mat-header-cell class="bg-light" *matHeaderCellDef mat-sort-header>Unit Price</th>
+    <td mat-cell *matCellDef="let element"> {{element.price}} </td>
+  </ng-container>
+  <ng-container matColumnDef="action">
+    <th mat-header-cell class="bg-light" *matHeaderCellDef mat-sort-header> Actions</th>
+    <td mat-cell *matCellDef="let element"> <!-- <a class="btn btn-success" [routerLink]="['/students/details',item.id]">Details</a> -->
+      <a class="btn btn-success" [routerLink]="['/Inventory/edit',element.id]" >Edit</a>
+      <a class="btn btn-danger"  (click)="Delete(element.id)">Delete</a>
+</td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+</table>
+
+<mat-paginator class="col-md-11" [length]="100"
+              [pageSize]="10"
+              [pageSizeOptions]="[10]"
+              aria-label="Select page">
+</mat-paginator>
+</div>

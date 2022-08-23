@@ -1,0 +1,115 @@
+<br>
+<div class="row">
+  <div class="col-md-4">
+    <div class="form-group">
+      <input   (keyup)="FilterProductsByName()" [(ngModel)]="SearchText" class="form-control form-control-lg"   type="text"  placeholder="Search.." >
+    </div>
+  </div>
+</div>
+<br>
+
+<!-- <div class="row">
+  <div class="col-md-4">
+    <div class="form-group">
+      <label>Category</label>
+      <select class="form-control form-control" >
+        <option  *ngFor="let I of products; let i = index" [value]="i" >{{I.en_Name}}</option>
+      </select>
+    </div>
+  </div>
+</div> -->
+<br>
+<div *ngIf="FilteredProducts.length >0;else NoProducts">
+  <div class="container" >
+    <div class="row">
+      <div class="col-12">
+        <div class="row">
+
+    <div class="col-xl-4 col-md-6 mb-5"  *ngFor="let item of FilteredProducts;; let i = index">
+      <div >
+        <div class="card mb-4 product-wap rounded-0">
+          <div class="card rounded-0">
+            <img
+            class="card-img rounded-0 img-fluid"
+                src="https://localhost:7216/api/Image?id={{item.id}}"
+                onerror=" this.src ='assets/img/Product.jpg'"
+              />
+            <!-- <img src="assets/img/shop_05.jpg"> -->
+            <div class="card-img-overlay rounded-0 product-overlay d-flex align-items-center justify-content-center">
+              <ul class="list-unstyled">
+                <!-- <li><a class="btn btn-success text-white" [routerLink]="['/products/details/',item.id]"><i class="far fa-heart"></i></a></li> -->
+                <li><a class="btn btn-success text-white mt-2" [routerLink]="['/products/details/',item.id]"><i class="far fa-eye"></i></a></li>
+                <li><a class="btn btn-success text-white mt-2" (click)="AddToCart(item.id,i)"><i class="fas fa-cart-plus"></i></a></li>
+              </ul>
+            </div>
+          </div>
+          <div class="card-body">
+              <a href="shop-single.html" class="h3 text-decoration-none"><p>{{item.en_Name}}   {{item.ar_Name}} </p> </a>
+
+              <ul class="w-100 list-unstyled d-flex justify-content-between mb-0">
+                <li > {{item.CategoryName}}</li>
+                <div *ngIf="item.quantity>1;else other_content">
+                 <!-- <li> <p >Order Now  </p></li> -->
+                </div>
+
+
+              <ng-template #other_content><p style="color:red">Not Available</p>
+              </ng-template>
+
+                  <!-- <li class="pt-2">
+                      <span class="product-color-dot color-dot-red float-left rounded-circle ml-1"></span>
+                      <span class="product-color-dot color-dot-blue float-left rounded-circle ml-1"></span>
+                      <span class="product-color-dot color-dot-black float-left rounded-circle ml-1"></span>
+                      <span class="product-color-dot color-dot-light float-left rounded-circle ml-1"></span>
+                      <span class="product-color-dot color-dot-green float-left rounded-circle ml-1"></span>
+                  </li> -->
+              </ul>
+<br>
+
+                                    <!-- Quantity -->
+                <div class="d-flex justify-content-center " >
+                  <button class="btn btn-secondary btn-sm  "
+                  (click)="stepDown(i)">
+                 <i class="fas fa-minus"></i>
+               </button>
+
+                  <div class="form-outline">
+                    <input id="form1" min="1" name="quantity" type="number" class="form-control" [(ngModel)]="item.newQuantity" />
+                    <!-- <label class="form-label" for="form1">Quantity</label> -->
+                  </div>
+
+                  <button class="btn btn-secondary btn-sm  "
+                     (click)="stepUp(i)">
+                    <i class="fas fa-plus"></i>
+                  </button>
+                </div>
+                <!-- Quantity -->
+<br>
+                       <div class="list-inline-item"><button class="btn btn-lg btn-success" (click)="AddToCart(item.id,i)">Add To Cart</button>
+                       </div>
+
+              <ul class="list-unstyled d-flex justify-content-center mb-1">
+                <li>
+                      <i class="text-warning fa fa-star"></i>
+                      <i class="text-warning fa fa-star"></i>
+                      <i class="text-warning fa fa-star"></i>
+                      <i class="text-muted fa fa-star"></i>
+                      <i class="text-muted fa fa-star"></i>
+                  </li>
+              </ul>
+              <p class="text-center mb-0"><small>EGP</small>{{item.price}}</p>
+          </div>
+      </div>
+    </div>
+    </div>
+    </div>
+    </div>
+  </div>
+
+   </div>
+</div>
+
+<ng-template #NoProducts><p style="color:red">No Products Available..</p>
+</ng-template>
+
+
