@@ -5,6 +5,8 @@ import { OrderService } from 'src/app/_services/order.service';
 import { MatTableDataSource} from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
+import {NgbActiveModal, NgbModal} from '@ng-bootstrap/ng-bootstrap';
+import { OrderdetailsComponent } from '../orderdetails/orderdetails.component';
 
 @Component({
   selector: 'app-orders',
@@ -13,9 +15,10 @@ import { MatSort } from '@angular/material/sort';
 })
 export class OrdersComponent implements OnInit {
 
-  constructor(public orderSer:OrderService,public AuthService:AuthService) { }
+  constructor(public orderSer:OrderService,public AuthService:AuthService,public modalService: NgbModal) { }
 id:number=0;
 userOrders:Order[]=[];
+OrderID:number=0;
 @ViewChild(MatPaginator) paginator:MatPaginator|any;
   @ViewChild(MatSort) sort:MatSort|any;
   displayedColumns: string[] = ['Id','num','Address','Price','Method'];
@@ -36,5 +39,12 @@ datasource:any;
 
     })
   }
+  orderDetails(orderId:number){
+    // console.log("HI");
+    const modalRef = this.modalService.open(OrderdetailsComponent,   { size: 'lg' });
+    modalRef.componentInstance.Id=orderId;
 
+
+
+  }
 }

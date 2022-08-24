@@ -36,9 +36,13 @@
 <!-- Cart Item-->
    <!-- Buttons-->
    <hr >
-   <div >
+   <div *ngIf="ProductsInCart.length>0" >
        <div><a (click)="EmptyCart()" class="btn btn-style-1 btn-secondary btn-block">Empty Cart</a></div>
        <br>
-       <div><a routerLink="/checkout/" class="btn btn-style-1 btn-secondary btn-block" >Checkout</a></div>
+       <div><a  (click)="CheckOut()" class="btn btn-style-1 btn-secondary btn-block" >Checkout</a></div>
+   </div>
+   <div *ngIf="ProductsInCart.length<1" >
+    <h1> Your Cart is Empty <a (click)="GoToShop()" class="link-primary">Go Shopping?</a>
+    </h1>
    </div>
 </div>

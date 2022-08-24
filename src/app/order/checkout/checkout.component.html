@@ -1,18 +1,26 @@
 <!-- <p>checkout works!</p> -->
+<br>
+
 <form id="contact-form"  #contactForm="ngForm" (ngSubmit)="clicka()">
   <div class="controls">
 <div *ngIf="!isConfirmed;else other_content">
-<div class="row">
-  <div class="col-md-6">
+  <div class="row row justify-content-center">
+
+    <H1 class="col-md-6">Please Enter This Information :</H1>
+  </div>
+  <div class="row row justify-content-center">
+    <div class="col-md-6">
       <div class="form-group">
-          <label for="Description">Shipping Address *</label>
+        <br>
+          <label for="Description">Shipment Address *</label>
           <input #Description="ngModel" class="form-control form-control-lg" [(ngModel)]="newOrder.shipping_Address" id="Description" name="Description" type="text" required=""  >
         <label style="color:red;" for="Description" *ngIf="!Description?.valid && (Description?.dirty || Description?.touched)">This Field is required</label>
         </div>
         </div>
       </div>
-<div class="row">
-  <div class="col-md-6" >
+      <br>
+      <div class="row row justify-content-center">
+        <div class="col-md-6" >
     <div class="form-group">
       <label for="Parent">Payment Method *</label>
       <select class="form-control form-control-lg"   id="Parent" (change)="SelectedMethod($event)">
@@ -21,19 +29,56 @@
 </div>
 <!-- </div> -->
 </div>
+</div>
+<br>
+      <div class="row row justify-content-center">
 
-      </div>
-      <div class="col-md-12">
+      <div class="col-md-6">
         <button name="save" [disabled]="!contactForm.valid" id="save" type="submit"   class="btn btn-success  pt-2 btn-block">Submit</button>
         <!-- <label style="color:red;" for="save" *ngIf="!contactForm.valid &&  Description?.touched">Please Fill The Required Fields..</label> -->
         </div>
+</div>
 </div>
 
 </div>
 </form>
 
 <ng-template #other_content>
-Checkout Details
-<button (click)="Confirm()">Confirm</button>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Product Image</th>
+        <th>Name</th>
+        <th>Unit Price</th>
+        <th>Quantity</th>
+        <th>Total Price</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let item of producsInCart">
+        <td ><img
+          src="https://localhost:7216/api/Image?id={{item.product_Id}}"
+          onerror=" this.src ='assets/img/Product.jpg'"
+              alt=""
+              style="width: 100px; height: 100px"
+              class="rounded-circle"
+              /></td>
+        <!-- <td >{{item.product_Id}}</td> -->
+        <td>{{item.En_Name}}</td>
+        <td>{{item.Unitprice}}</td>
+        <td>{{item.quantity}}</td>
+        <td>{{item.TotalPrice}}</td>
+
+      </tr>
+
+    </tbody>
+  </table>
+  <h1>Shipment Address : {{newOrder.shipping_Address}}</h1>
+  <h1>Order Total Price : {{newOrder.total_Price}}</h1>
+  <div class="col-md-6">
+    <button name="save" id="save"  type="submit"  (click)="Confirm()" class="btn btn-success  pt-2 btn-block">Confirm Order</button>
+    <!-- <label style="color:red;" for="save" *ngIf="!contactForm.valid &&  Description?.touched">Please Fill The Required Fields..</label> -->
+    </div>
+<br>
 
 </ng-template>

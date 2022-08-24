@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Cart } from 'src/app/_models/cart';
 import { AuthService } from 'src/app/_services/auth.service';
 import { CartService } from 'src/app/_services/cart.service';
@@ -12,7 +14,7 @@ import { ProductService } from 'src/app/_services/product.service';
 export class CartComponent implements OnInit {
 ProductsInCart:Cart[]|any=[];
 userId:number=this.auth.getCurrentUser()?.Id;
-  constructor(public cartser:CartService,public auth:AuthService,public proser:ProductService) { }
+  constructor(public cartser:CartService,public auth:AuthService,public proser:ProductService,public router:Router,public ngmodalSer:NgbModal) { }
 
   ngOnInit(): void {
     if(this.userId!=null){
@@ -52,5 +54,13 @@ this.ngOnInit();
       })
     }
 
+  }
+  CheckOut(){
+    this.router.navigateByUrl("/checkout")
+    this.ngmodalSer.dismissAll();
+  }
+  GoToShop(){
+    this.router.navigateByUrl("/products")
+    this.ngmodalSer.dismissAll();
   }
 }

@@ -7,6 +7,7 @@ import { CategoryListComponent } from './category/category-list/category-list.co
 import { EditCategoryComponent } from './category/edit-category/edit-category.component';
 import { CartComponent } from './order/cart/cart.component';
 import { CheckoutComponent } from './order/checkout/checkout.component';
+import { OrderdetailsComponent } from './order/orderdetails/orderdetails.component';
 import { OrdersComponent } from './order/orders/orders.component';
 import { ProductDetailsComponent } from './order/product-details/product-details.component';
 import { ProductlistComponent } from './order/productlist/productlist.component';
@@ -33,6 +34,7 @@ const routes: Routes = [
   { path: "products", component: ProductlistComponent },
   { path: "products/details/:id", component: ProductDetailsComponent },
   { path: "orders", component: OrdersComponent },
+  { path: "orders/details", component: OrderdetailsComponent },
   { path: "mycart", component: CartComponent },
   { path: "checkout", component: CheckoutComponent },
   { path: "**", component: ErrorComponent }

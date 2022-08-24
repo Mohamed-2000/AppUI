@@ -12,6 +12,7 @@ import { NgxPaginationModule } from 'ngx-pagination';
 import { MatTableModule } from '@angular/material/table';
 import { MatSortModule } from '@angular/material/sort';
 import { MatPaginatorModule } from '@angular/material/paginator';
+import { OrderdetailsComponent } from './orderdetails/orderdetails.component';
 
 
 
@@ -21,7 +22,8 @@ import { MatPaginatorModule } from '@angular/material/paginator';
     OrdersComponent,
     ProductDetailsComponent,
     CartComponent,
-    CheckoutComponent
+    CheckoutComponent,
+    OrderdetailsComponent
   ],
   imports: [
     CommonModule,FormsModule,RouterModule,HttpClientModule,NgxPaginationModule,

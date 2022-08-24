@@ -1,1 +1,155 @@
-<p>register works!</p>
+
+<section class="vh-100 bg-image"
+    style="background-image: url('https://mdbcdn.b-cdn.net/img/Photos/new-templates/search-box/img4.webp');">
+    <div class="mask d-flex align-items-center h-100 gradient-custom-3">
+        <div class="container h-100">
+            <div class="row d-flex justify-content-center align-items-center h-100">
+                <div class="col-12 col-md-8 col-lg-6 col-xl-5">
+                    <div class="card  mt-4" style="border-radius: 15px;">
+                        <div class="card-body px-5 pt-5">
+
+
+
+                            <form [formGroup]="form">
+                              <div class="form-outline mb-3 ">
+                                <h1>
+                                Please Enter This Information :
+                                </h1>
+                              </div>
+
+                                    <div class="form-outline mb-2 ">
+                                        <input type="text" class="form-control form-control-lg"
+                                            placeholder="Your First Name"
+                                            formControlName="firstName"
+                                            id="firstName"
+                                             />
+                                             <div *ngIf="form.get('firstName')?.touched && form.get('firstName')?.errors?.['required']" class="text-danger mb-1 small">
+                                              First Name is required.
+                                          </div>
+                                          <div *ngIf="form.get('firstName')?.errors?.['minlength'] && form.get('firstName')?.invalid" class="text-danger mb-1 small">
+                                            Min 3 Characters..
+                                        </div>
+                                        <div *ngIf="form.get('firstName')?.errors?.['maxlength'] && form.get('firstName')?.invalid" class="text-danger mb-1 small">
+                                          Max 15 Characters..
+                                      </div>
+
+                                    </div>
+                                    <div class="form-outline mb-2 ">
+                                      <input type="text" class="form-control form-control-lg"
+                                          placeholder="Your Last Name"
+                                          formControlName="lastName"
+                                          id="lastName"
+                                           />
+                                           <div *ngIf="form.get('lastName')?.touched && form.get('lastName')?.errors?.['required']" class="text-danger mb-1 small">
+                                            Last Name is required.
+                                        </div>
+                                        <div *ngIf="form.get('lastName')?.errors?.['minlength'] && form.get('lastName')?.invalid" class="text-danger mb-1 small">
+                                          Min 3 Characters..
+                                      </div>
+                                      <div *ngIf="form.get('lastName')?.errors?.['maxlength'] && form.get('lastName')?.invalid" class="text-danger mb-1 small">
+                                        Max 15 Characters..
+                                    </div>
+                                  </div>
+                                  <div class="form-outline mb-2 ">
+                                    <input type="email" class="form-control form-control-lg"
+                                        placeholder="Your Email"
+                                        formControlName="email"
+                                        id="email"
+                                        (keyup)="checkEmail()"
+
+                                         />
+                                         <div *ngIf="form.get('email')?.touched && form.get('email')?.invalid" class="text-danger mb-1 small">
+                                          Enter a valid email.
+                                      </div>
+                                      <!-- <div *ngIf="EmailExistError" class="text-danger mb-1 small">
+                                        Enter a valid email
+                                    </div> -->
+
+
+
+
+                                </div>
+                                <div class="form-outline mb-2 ">
+                                  <input type="text" class="form-control form-control-lg"
+                                      placeholder="Your UserName "
+                                      formControlName="userName"
+                                      id="userName"
+                                       />
+                                       <div *ngIf="form.get('userName')?.touched && form.get('userName')?.errors?.['required']" class="text-danger mb-1 small">
+                                        UserName is required.
+                                    </div>
+                                    <div *ngIf="form.get('userName')?.errors?.['minlength'] && form.get('userName')?.invalid" class="text-danger mb-1 small">
+                                      Min 3 Characters..
+                                  </div>
+                                  <div *ngIf="form.get('userName')?.errors?.['maxlength'] && form.get('userName')?.invalid" class="text-danger mb-1 small">
+                                    Max 15 Characters..
+                                </div>
+
+                              </div>
+                              <div class="form-outline mb-2 ">
+                                <input type="password" class="form-control form-control-lg"
+                                    placeholder="Your Password"
+                                    formControlName="password"
+                                    id="password"
+                                     />
+                                     <div *ngIf="form.get('password')?.touched && form.get('password')?.errors?.['required']" class="text-danger mb-1 small">
+                                      Enter a valid password
+                                  </div>
+                                  <div *ngIf="form.get('password')?.errors?.['minlength'] && form.get('password')?.invalid" class="text-danger mb-1 small">
+                                    Min 8 Characters..
+                                </div>
+                                <div *ngIf="form.get('password')?.errors?.['maxlength'] && form.get('password')?.invalid" class="text-danger mb-1 small">
+                                  Max 20 Characters..
+                              </div>
+
+
+                            </div>
+                            <div class="form-outline mb-2 ">
+                              <input type="password" class="form-control form-control-lg"
+                                  placeholder="Confirm Password"
+                                  formControlName="confirmPassword"
+                                  id="confirmPassword"
+                                   />
+                                   <div *ngIf="form.get('confirmPassword')?.touched && form.get('confirmPassword')?.errors?.['required']" class="text-danger mb-1 small">
+                                    Enter a valid password
+                                </div>
+
+                                   <div *ngIf="passwordMatchError" class="text-danger mb-1 small">
+                                    Password does not match
+                                  </div>
+                          </div>
+                          <div class="form-outline mb-2 ">
+                            <input type="text" class="form-control form-control-lg"
+                                placeholder="Your Address"
+                                formControlName="address"
+                                id="address"
+                                 />
+                        </div>
+
+
+
+                                <div class="d-flex justify-content-center">
+                                    <button type="button"
+                                        class="btn btn-success btn-block btn-lg gradient-custom-4 text-body"
+                                        (click)="Continue()">Sign Up</button>
+                                </div>
+
+                                <p class="text-center text-muted mt-3 mb-0">Have already an account? <a
+                                        [routerLink]="'/login'" class="fw-bold text-body"><u>Login here</u></a></p>
+
+
+                            </form>
+ <div *ngIf="EmailExistError" class="text-danger mb-1 small">
+                                        Enter a valid email
+                                    </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+<br><br><br><br>

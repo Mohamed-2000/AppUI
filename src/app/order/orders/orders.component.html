@@ -2,7 +2,6 @@
 
 <h1>Previous orders</h1>
 <br>
-
 <table mat-table [dataSource]="datasource" matSort class="mat-elevation-z8">
 
   <!--- Note that these columns can be defined in any order.
@@ -14,21 +13,25 @@
         </ng-container>
         <ng-container matColumnDef="num">
           <th mat-header-cell class="bg-light" *matHeaderCellDef mat-sort-header>Order Number</th>
-          <td mat-cell *matCellDef="let element; let i=index"> {{element.id}} </td>
+
+
+          <td mat-cell *matCellDef="let element; let i=index"> <button class="btn btn-outline-success" (click)="orderDetails(element.id)">{{element.id}}
+
+          </button> </td>
         </ng-container>
 
 
   <ng-container matColumnDef="Address">
-    <th mat-header-cell class="bg-light" *matHeaderCellDef mat-sort-header>English Name</th>
+    <th mat-header-cell class="bg-light" *matHeaderCellDef mat-sort-header>Shipping Address</th>
     <td mat-cell *matCellDef="let element"> {{element.shipping_Address}} </td>
   </ng-container>
   <ng-container matColumnDef="Price">
-    <th mat-header-cell class="bg-light" *matHeaderCellDef mat-sort-header>Arabic Name</th>
-    <td mat-cell *matCellDef="let element"> {{element.total_Price}} </td>
+    <th mat-header-cell class="bg-light" *matHeaderCellDef mat-sort-header>Total Price</th>
+    <td mat-cell *matCellDef="let element"> EGP : {{element.total_Price}} </td>
   </ng-container>
 
   <ng-container matColumnDef="Method">
-    <th mat-header-cell class="bg-light" *matHeaderCellDef mat-sort-header>Category</th>
+    <th mat-header-cell class="bg-light" *matHeaderCellDef mat-sort-header>Payment Method</th>
     <td mat-cell *matCellDef="let element;let i = index">{{element.payment_Method}} </td>
   </ng-container>
 

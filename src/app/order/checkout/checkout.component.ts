@@ -136,6 +136,8 @@ SelectedMethod(e:any){
 
 }
 Confirm(){
-  this.AddNewOrder()
+  this.AddNewOrder();
+  this.router.navigateByUrl("/products")
+
 }
 }
