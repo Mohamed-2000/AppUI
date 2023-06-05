@@ -4,7 +4,6 @@ import { User } from 'src/app/_models/user';
 import { AuthService } from 'src/app/_services/auth.service';
 import { UserService } from 'src/app/_services/user.service';
 import {NgbActiveModal, NgbModal} from '@ng-bootstrap/ng-bootstrap';
-import { CartComponent } from 'src/app/order/cart/cart.component';
 
 @Component({
   selector: 'app-header',
@@ -31,10 +30,5 @@ export class HeaderComponent implements OnInit {
       });
     }
   }
-  openCart(){
-    if(this.userId!=null)
-    this.modalService.open(CartComponent,   { size: 'lg' });
-    else this.router.navigate(['/login/'])
 
-  }
 }
